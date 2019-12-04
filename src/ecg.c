@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-enum State {INIT,SEND,WAIT,END,DONE,ACK,READY};
+enum State {DATA,ACK,REQ,TER,END, INIT,SEND,WAIT,RECV}; // INIT,SEND,WAIT,ACK,READY};
 
 
 
@@ -53,6 +53,13 @@ typedef struct {
     unsigned short cs;;
 } ter_pdu_t;
 
+typedef struct {
+    tag_t type;
+    unsigned char n;
+    unsigned short msg_len;
+    unsigned short cs;;
+} end_pdu_t;
+
 typedef union {
     char raw[FRAME_PAYLOAD_SIZE];
 
@@ -61,6 +68,8 @@ typedef union {
     ack_pdu_t    ack;
     req_pdu_t    req;
     ter_pdu_t    ter;
+    end_pdu_t    end;
+
 } pdu_frame_t;
 
 # define DATA_PAYLOAD_SIZE ( FRAME_PAYLOAD_SIZE - sizeof ( data_pdu_t ));
@@ -132,7 +141,7 @@ int ecg_recv(int* src, char* packet, int len, int to_ms){
 
 	switch(state) {
 
-			case READY :
+			case  :
 				 break;
 
 			case ACK : //ACKNOWLEDGEMENT
