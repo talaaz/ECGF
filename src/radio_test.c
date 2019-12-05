@@ -9,8 +9,10 @@
  *   -sa p  Set sender address to p (port)
  */
 
+/*
 
 // Uses
+
 #include "radio.h"
 #include <stdio.h>
 #include <string.h>
@@ -23,8 +25,9 @@ int is_sender = 0;
 int snd_addr = 2132;
 int rcv_addr = 2135;
 
-/* For larger number of options, use a library, e.g. gopt
- *
+// For larger number of options, use a library, e.g. gopt
+
+
 void read_args(int argc, char * argv[]) {
     int i;
 
@@ -124,4 +127,5 @@ int main(int argc, char * argv[]) {
 
     return is_sender ? sender() :  receiver();
 
-}*/
+}
+*/
